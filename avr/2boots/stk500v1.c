@@ -180,8 +180,10 @@ static char getch(void)
 		/* HACKME:: here is a good place to count times*/
 		count++;
 		if (count > MAX_TIME_COUNT) { 
-			WDTCSR = _BV(WDE);
-	  		while (1); // 16 ms 
+			return;
+			// If we reset at timeout, the mmc_updater will never be called as the sketch is immediately started
+			//WDTCSR = _BV(WDE);
+	  		//while (1); // 16 ms 
 	  	}
 	}
 
@@ -194,8 +196,9 @@ static char getch(void)
 		/* HACKME:: here is a good place to count times*/
 		count++;
 		if (count > MAX_TIME_COUNT) {
-			WDTCSR = _BV(WDE);
-	  		while (1); // 16 ms
+			return;
+			//WDTCSR = _BV(WDE);
+	  		//while (1); // 16 ms
 	  	}
 	}
 	return UDR;
